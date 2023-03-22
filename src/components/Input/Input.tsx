@@ -1,18 +1,21 @@
+import React, { useState, useCallback } from 'react';
+
 interface Props {
-  value: string;
-  onChange: (value: string) => void;
-  onSubmit: () => void;
+  onSubmit: (value: string) => void;
 }
 
-function Input({ value, onChange, onSubmit }: Props) {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
-  };
+function Input({ onSubmit }: Props) {
+  const [value, setValue] = useState('');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  }, []);
+
+  const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit();
-  };
+    onSubmit(value);
+    setValue('');
+  }, [onSubmit, value]);
 
   return (
     <form onSubmit={handleSubmit}>
