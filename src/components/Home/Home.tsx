@@ -1,5 +1,11 @@
+import useApi from '../../hooks/useSession';
+
 export function Home() {
-  return <div>
-    Home
-  </div>;
+  const [data, isLoading, error, fetchData] = useApi();
+
+  return (
+    <div>
+      <button onClick={fetchData}>Create Chat room</button>
+    </div>
+  );
 }

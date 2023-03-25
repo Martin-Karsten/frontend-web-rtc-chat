@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-export function Chat() {
-  const { session } = useParams<{ session: string }>();
-  return <div>Session {session}</div>;
+function Chat() {
+  const { sessionId } = useParams<{ sessionId: string }>();
+  // Do something with the `pin` value
+  return <div>sessionId {sessionId}</div>;
 }
